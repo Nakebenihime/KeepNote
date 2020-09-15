@@ -9,12 +9,13 @@ This web application allows users to take notes using post-it type windows
 ## TECHNOLOGY STACK
 COMPONENT                           | TECHNOLOGY              | FOR MORE INFORMATION
 ---                                 | ---                     |---
-Languages & Frameworks              |`spring boot` `angular`   | https://spring.io/projects/spring-boot & https://angular.io/
+Languages & Frameworks              |`spring boot` `angular`  | https://spring.io/projects/spring-boot & https://angular.io/
 JavaScript Framework Components     |`angular CLI` `npm`      | https://cli.angular.io/ & https://www.npmjs.com/package/npm
 Databases                           |`mongoDB`                | https://www.mongodb.com/
 Documentation as a Service & Tools  |`swagger UI`             | https://swagger.io/
 Java Tools                          |`lombok` `maven`         | https://projectlombok.org/ & https://maven.apache.org/
 Testing Frameworks                  |`archunit`               | https://www.archunit.org/
+Security                            |`spring security`        | https://spring.io/projects/spring-security 
 
 ## PREREQUISITES
 These instructions will allow you to get a copy of the project on your **windows** machine, you must have the following software correctly installed in order to build the project.
@@ -236,7 +237,7 @@ angular-springboot-project
 ## GETTING STARTED
 clone the application, run the following command:
 ```
-git clone https://github.com/Nakebenihime/angular-springboot-project.git
+git clone https://github.com/Nakebenihime/KeepNote.git
 ```
 ### BACKEND
 1. move into **angular-springboot-backend** folder
