@@ -16,9 +16,9 @@ spring:
       uri: mongodb://mongodb:27017/notedb
   mail:
     host: smtp.mailtrap.io
-    password: 40cbc35fed2157
+    password:
     port: 2525
-    username: 08281e9850c073
+    username:
 
 mailtrap:
-  inbox: 69f4d8bdce-5254f8@inbox.mailtrap.io
+  inbox:
