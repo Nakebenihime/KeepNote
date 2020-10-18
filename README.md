@@ -285,7 +285,7 @@ For each module (email, note & swagger-aggregator) run the following command:
 Install docker on your local machine. You can find the installation steps on this link! [docker.com](https://docs.docker.com/install/)
 Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
 
-1. navigate to the project root folder ()
+1. navigate to the project root folder
 2. build and run the images with docker-compose:
 ```
     docker-compose up --build
