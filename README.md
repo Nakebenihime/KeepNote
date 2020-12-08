@@ -1,10 +1,8 @@
 # KEEPNOTE - SPRINGBOOT REST API + ANGULAR 10 UI
 
-This repository contains a project that shows how to build a web application using **ANGULAR** as frontend and **SPRING BOOT** RESTful API as backend:
+This web application allows users to take notes using post-it type windows using ANGULAR as frontend and SPRINGBOOT as backend:
 - frontend generated using Angular CLI (https://cli.angular.io)
 - backend generated using Spring IO (https://start.spring.io)
-
-This web application allows users to take notes using post-it type windows
 
 ## TECHNOLOGY STACK
 COMPONENT                           | TECHNOLOGY              | FOR MORE INFORMATION
@@ -12,7 +10,7 @@ COMPONENT                           | TECHNOLOGY              | FOR MORE INFORMA
 Languages & Frameworks              |`spring boot` `angular`  | https://spring.io/projects/spring-boot & https://angular.io/
 JavaScript Framework Components     |`angular CLI` `npm`      | https://cli.angular.io/ & https://www.npmjs.com/package/npm
 Databases                           |`mongoDB`                | https://www.mongodb.com/
-Documentation as a Service & Tools  |`swagger UI`             | https://swagger.io/
+Documentation as a Service & Tools  |`swagger`                | https://swagger.io/
 Java Tools                          |`lombok` `maven`         | https://projectlombok.org/ & https://maven.apache.org/
 Testing Frameworks                  |`archunit`               | https://www.archunit.org/
 Security                            |`spring security`        | https://spring.io/projects/spring-security 
@@ -23,8 +21,8 @@ These instructions will allow you to get a copy of the project on your **windows
 ### INSTALL BACKEND COMPONENTS
 - JAVA 8+
 - MAVEN 3.3+
+
 #### INSTALL JAVA
-Spring Boot 2.3.3.RELEASE requires JAVA 8 and is compatible up to JAVA 14. Spring Boot can be used with “classic” Java development tools or installed as a command line tool. Either way, you need Java SDK v1.8 or higher.
 
 1. visit [oracle.com](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) official website
 2. select the windows x64 installer
@@ -51,7 +49,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 14.0.2+12-46, mixed mode, sharing)
 ```
 
 ####  INSTALL MAVEN
-Maven is a build automation tool used primarily for JAVA projects.
 
 1.	visit [maven.apache.org](https://maven.apache.org/download.cgi/) official website
 2.	select the binary zip archive and extract it to you favorite location
@@ -159,7 +156,7 @@ angular-springboot-project
   |
   +---angular-springboot-backend
   |   |
-  |   +--api-requests (contains queries with which you can test your web service - only for the ultimate version of IntelliJ IDEA)
+  |   +--api-requests (contains queries with which you can test your web services - only available with the ultimate version of IntelliJ IDEA)
   |   +--common (maven module - contains all "shared" components such as models, viewmodels, repositories...)
   |   |   +---src
   |   |       +---main
@@ -167,11 +164,11 @@ angular-springboot-project
   |   |       |   |   +---org
   |   |       |   |       +---backend
   |   |       |   |           +---mapper (contains methods to convert domain models to viewmodels and viewmodels to models)
-  |   |       |   |           +---model (contains domain models - related to how your data is stored)
+  |   |       |   |           +---model (contains domain models - related to the way your data is stored)
   |   |       |   |           +---repository (contains @repository interfaces)
-  |   |       |   |           +---seeder (contains a database seeder - inserts data into tables after their creation)
-  |   |       |   |           +---service (contains a service interface)
-  |   |       |   |           +---viewmodel (similar to model classes - related to how your data is presented to the user)
+  |   |       |   |           +---seeder (contains a database seeder - inserts the data when the application is started)
+  |   |       |   |           +---service (contains @service interfaces - business logic processes)
+  |   |       |   |           +---viewmodel (similar to model classes - related to the way your data is presented to the user)
   |   |       |   +---resources
   |   |       +---test
   |   |           +---java
@@ -181,10 +178,10 @@ angular-springboot-project
   |   |       |   +---java
   |   |       |   |   +---org
   |   |       |   |       +---backend
-  |   |       |   |           +---configuration (contains @configuration classes such as swagger & web configuration)
-  |   |       |   |           +---controller (contains @controller classes - converts payload and dispatches to the right service)
-  |   |       |   |           +---service (contains @service classes - business logic operations)
-  |   |       |   +---resources (contains YAML configuration files - application properties)
+  |   |       |   |           +---configuration (contains @configuration classes)
+  |   |       |   |           +---controller (contains @controller classes - converts the payload and dispatches to the correct service)
+  |   |       |   |           +---service (contains @service interfaces - business logic processes)
+  |   |       |   +---resources (contains the application properties)
   |   |       +---test
   |   |           +---java
   |   *---note (maven module - contains the business layer to manage notes and notebooks)
@@ -193,10 +190,10 @@ angular-springboot-project
   |   |       |   +---java
   |   |       |   |   +---org
   |   |       |   |       +---backend
-  |   |       |   |           +---configuration (contains @configuration classes such as swagger & web configuration)
-  |   |       |   |           +---controller (contains @controller classes - converts payload and dispatches to the right service)
-  |   |       |   |           +---service (contains @service classes - business logic operations)
-  |   |       |   +---resources (contains YAML configuration files - application properties)
+  |   |       |   |           +---configuration (contains @configuration classes)
+  |   |       |   |           +---controller (contains @controller classes - converts the payload and dispatches to the correct service)
+  |   |       |   |           +---service (contains @service interfaces - business logic processes)
+  |   |       |   +---resources  (contains the application properties)
   |   |       +---test
   |   |           +---java
   |   *---swagger-aggregator (maven module - aggregates/consolidates all the microservices swagger definitions into a single swagger interface)
@@ -205,16 +202,16 @@ angular-springboot-project
   |           |   +---java
   |           |   |   +---org
   |           |   |       +---backend
-  |           |   |           +---configuration configuration (contains @configuration classes such as swagger & web configuration)
-  |           |   +---resources (contains YAML configuration files - application properties)
+  |           |   |           +---configuration (contains @configuration classes)
+  |           |   +---resources (contains the application propertiess)
   |           +---test
   |               +---java
   +---angular-springboot-frontend
       |
       +---e2e (refers to end-to-end testing of the application - contains scripts that we can use to simulate end-user actions and behaviours)
-      +---node_modules (all the librairies and dependencies that you install using the command: npm install)
+      +---node_modules (all the librairies and dependencies that you install using the command "npm install")
       +---src
-      |    +---app (default application module - contains all our modules and components)
+      |    +---app (default application module - contains all our application modules and components)
       |    |   +---feedback
       |    |        +---model
       |    |        +--- *.css|html|spec.ts|ts
@@ -228,32 +225,34 @@ angular-springboot-project
       |    |        +--- *.css|html|spec.ts|ts
       |    |    +---app.module.ts
       |    +---assets (contains all our images, fonts, styles...)
-      +---angular.json (contains the configuration for the CLI workspace)
-      +---package.json (contains all the npm dependencies of our application, each time we add a new dependency, we must reference with --save)
+      +---angular.json (contains the CLI workspace configuration)
+      +---package.json (contains all the npm dependencies of our application, each time we add a new dependency, we must reference it with the option --save)
 ```
-
-
 
 ## GETTING STARTED
-clone the application, run the following command:
+Clone the application, run the following command:
 ```
-git clone https://github.com/Nakebenihime/KeepNote.git
+git clone https://github.com/Nakebenihime/keep-note.git
 ```
 ### BACKEND
 1. move into **angular-springboot-backend** folder
 2. for each maven module, configure the application.yml files
-    - add database properties to **common** and **note** modules
+
+- add database properties to **common** and **note** modules
+
 ```
    database:
-     persistance: false <-- false = data does not persist | true = data persist
+     persistance: false <-- false = the data stored in the database are not persistent  | true = the data stored in the database are persistent
     spring:
       data:
         mongodb:
-          host:         <-- address or domain name
-          port:         <-- listening port
+          host:         <-- @IP address or domain name
+          port:         <-- database listening port
           database:     <-- database name
 ```
-- sign-up [mailtrap](https://mailtrap.io/register/signup?ref=header) and add your inbox properties to the **email** application.yml
+
+- sign-up to [mailtrap](https://mailtrap.io/register/signup?ref=header) and add your inbox properties to the **email** application.yml
+
 ```
     mail:
       host: smtp.mailtrap.io 
@@ -271,18 +270,22 @@ For each module (email, note & swagger-aggregator) run the following command:
 ```
     java -jar [module_name]/target/[module_name]-0.0.1-SNAPSHOT.jar
 ```
+
 ### FRONTEND
+
 1. move into **angular-springboot-frontend** folder
 2. install the dependencies with the following command:
 ```
     npm install
 ```
+
 3. start the server with the following command:
 ```
     npm start
 ```
+
 ## DOCKER
-Install docker on your local machine. You can find the installation steps on this link! [docker.com](https://docs.docker.com/install/)
+Install docker on your local machine. You can find the installation steps on [docker](https://docs.docker.com/install/)
 Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
 
 1. navigate to the project root folder
@@ -302,8 +305,9 @@ Verify docker container status to make sure everything is okay:
     4586bbabe174        backend-email                           "java -Djava.securit…"   53 seconds ago      Up 53 seconds       0.0.0.0:8181->8181/tcp, 8282/tcp   backend-email
 ```
 Browse http://localhost:80 to explore the application
+
 ## EXPLORE REST APIs
-You can test them using swagger-ui or any other rest client, swagger2 UI is available at http://localhost:8282/swagger-ui.html.
+You can explore the resources using swagger-ui or any other REST client, swagger2 UI is available at http://localhost:8282/swagger-ui.html
 
 METHOD | PATH                   | DESCRIPTION                               |
 -------|------------------------|-------------------------------------------|

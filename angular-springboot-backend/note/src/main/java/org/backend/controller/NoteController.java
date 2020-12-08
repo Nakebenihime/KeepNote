@@ -6,6 +6,7 @@ import org.backend.model.Note;
 import org.backend.service.NoteServiceImpl;
 import org.backend.viewmodel.NoteViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class NoteController {
         this.mapper = mapper;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NoteViewModel>> getAll() {
         List<Note> notes = this.noteService.findAll();
         var notesViewModel = notes.stream()
@@ -41,7 +42,7 @@ public class NoteController {
                 .ok(notesViewModel);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<NoteViewModel> getById(@PathVariable String id) {
         log.info("fetching note with id {}", id);
         Optional<Note> note = this.noteService.findById(id);
@@ -56,7 +57,7 @@ public class NoteController {
                 .ok(noteViewModel);
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Note> save(@RequestBody NoteViewModel noteViewModel, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
         if (bindingResult.hasErrors()) {
             log.error("unable to save note{} errors were found.", noteViewModel);
@@ -70,7 +71,7 @@ public class NoteController {
                 .body(this.noteService.save(noteEntity));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         log.info("fetching & deleting note with id {}", id);
         if (this.noteService.findById(id).isEmpty()) {

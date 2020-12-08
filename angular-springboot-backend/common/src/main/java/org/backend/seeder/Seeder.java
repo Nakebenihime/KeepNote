@@ -6,6 +6,7 @@ import org.backend.model.Notebook;
 import org.backend.repository.NoteRepository;
 import org.backend.repository.NotebookRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-//@ConditionalOnProperty(name = "database.persistance", havingValue = "true")
+@ConditionalOnProperty(name = "database.persistance", havingValue = "true")
 public class Seeder implements CommandLineRunner {
 
     private final NotebookRepository noteBookRepository;

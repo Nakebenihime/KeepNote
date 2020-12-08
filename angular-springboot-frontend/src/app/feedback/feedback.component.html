@@ -2,20 +2,20 @@
   <div class="row">
     <div class="offset-3"></div>
     <div class="col-md-6">
-      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendFeedback()" novalidate class="feedback-form">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && sendFeedback()" class="feedback-form" name="form" novalidate>
 
         <!-- Name -->
         <div class="form-group">
           <label for="name">First Name</label>
-          <input type="text"
-                 id="name"
+          <input #name="ngModel"
+                 [(ngModel)]="model.name"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
                  class="form-control"
+                 id="name"
                  name="name"
                  placeholder="Your name"
-                 [(ngModel)]="model.name"
-                 #name="ngModel"
-                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
-                 required/>
+                 required
+                 type="text"/>
           <!-- input validation group -->
           <div *ngIf="f.submitted && name.invalid" class="invalid-input">
             <!-- individual validation errors -->
@@ -25,15 +25,15 @@
         <!-- Email -->
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text"
-                 id="email"
+          <input #email="ngModel"
+                 [(ngModel)]="model.email"
+                 [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                  class="form-control"
+                 email
+                 id="email"
                  name="email"
                  placeholder="Your email"
-                 [(ngModel)]="model.email"
-                 #email="ngModel"
-                 [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
-                 required email/>
+                 required type="text"/>
           <!-- input validation group -->
           <div *ngIf="f.submitted && email.invalid" class="invalid-input">
             <!-- individual validation errors -->
@@ -46,15 +46,15 @@
         <div class="form-group">
           <label for="feedback">Feedback</label>
           <textarea
-            id="feedback"
+            #feedback="ngModel"
+            [(ngModel)]="model.feedback"
+            [ngClass]="{ 'is-invalid': f.submitted && feedback.invalid }"
             class="form-control"
+            id="feedback"
+            minlength="10"
             name="feedback"
             placeholder="Your feedback"
-            rows="10"
-            [(ngModel)]="model.feedback"
-            #feedback="ngModel"
-            [ngClass]="{ 'is-invalid': f.submitted && feedback.invalid }"
-            required minlength="10">
+            required rows="10">
           </textarea>
           <!-- input validation group -->
           <div *ngIf="f.submitted && feedback.invalid" class="invalid-input">
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-info pull-right">
+        <button class="btn btn-info pull-right" type="submit">
           <i class="fa fa-envelope-o"></i>
           <span> Send Feedback</span>
         </button>

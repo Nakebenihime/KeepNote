@@ -9,6 +9,7 @@ import org.backend.service.NotebookServiceImpl;
 import org.backend.viewmodel.NoteViewModel;
 import org.backend.viewmodel.NotebookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class NotebookController {
         this.noteService = noteService;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NotebookViewModel>> getAll() {
         List<Notebook> notebooks = this.notebookService.findAll();
         var notebooksViewModel = notebooks.stream()
@@ -48,7 +49,7 @@ public class NotebookController {
                 .ok(notebooksViewModel);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<NotebookViewModel> getById(@PathVariable String id) {
         log.info("fetching notebook with id {}", id);
         Optional<Notebook> notebook = this.notebookService.findById(id);
@@ -63,7 +64,7 @@ public class NotebookController {
                 .ok(notebookViewModel);
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Notebook> save(@RequestBody NotebookViewModel notebookViewModel, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
         if (bindingResult.hasErrors()) {
             log.error("unable to save notebook{} errors were found.", notebookViewModel);
@@ -77,7 +78,7 @@ public class NotebookController {
                 .body(this.notebookService.save(notebookEntity));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         log.info("fetching & deleting notebook with id {}", id);
         if (this.notebookService.findById(id).isEmpty()) {
@@ -94,7 +95,7 @@ public class NotebookController {
                 .build();
     }
 
-    @GetMapping("/{id}/notes")
+    @GetMapping(value = "/{id}/notes", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NoteViewModel>> getAllByNotebook(@PathVariable String id) {
         List<Note> notes;
         log.info("fetching notebook with id {}", id);

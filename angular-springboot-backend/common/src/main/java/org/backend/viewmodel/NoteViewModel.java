@@ -1,13 +1,11 @@
 package org.backend.viewmodel;
 
 import lombok.*;
-import org.backend.model.Note;
 import org.backend.repository.NotebookRepository;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.UUID;
 
 @Builder
 @Getter
@@ -16,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class NoteViewModel {
 
-    private final NotebookRepository notebookRepository = null ;
+    private final NotebookRepository notebookRepository = null;
 
     private String id;
 

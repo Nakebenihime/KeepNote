@@ -32,7 +32,7 @@ public class ServiceRulesTest extends ArchitectureArchUnitTest {
         classes()
                 .that().resideInAPackage("..service..")
                 .and().areAnnotatedWith(Service.class)
-                .should().onlyBeAccessed().byAnyPackage("..controller..","..service..")
+                .should().onlyBeAccessed().byAnyPackage("..controller..", "..service..")
                 .check(javaClasses);
     }
 

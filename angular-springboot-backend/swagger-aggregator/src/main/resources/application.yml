@@ -11,12 +11,12 @@ management:
       exposure:
         include: "*"
 documentation:
-  baseurl: http://localhost
+  base-url: http://localhost
   swagger:
     services:
       - name: note
-        url: ${documentation.baseurl}:8080/v2/api-docs?group=note-v1
+        url: ${documentation.base-url}:8080/v2/api-docs?group=note-v1
         version: 2.0
       - name: email
-        url: ${documentation.baseurl}:8181/v2/api-docs?group=email-v1
+        url: ${documentation.base-url}:8181/v2/api-docs?group=email-v1
         version: 2.0
